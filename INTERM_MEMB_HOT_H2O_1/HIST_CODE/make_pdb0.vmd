@@ -1,0 +1,23 @@
+set trmin 2
+set trmax 2
+
+set repmin 1
+set repmax 12
+set strmin 1
+set strmax 1
+
+file delete stride_errors.dat
+for {set tr $trmin} {$tr <= $trmax} {incr tr 1} {
+ for {set rep $repmin} {$rep <= $repmax} {incr rep 1} {
+    # load file
+    mol delete all
+    mol new mem22_pep.psf waitfor all
+    mol addfile pgl22_mem${rep}_0.coor
+    # extract peptides
+    set s1 [atomselect top  all]
+    $s1 writepdb pdbfiles/pgl22_mem${tr}_00000_${rep}.pdb
+ }
+}
+
+exit
+

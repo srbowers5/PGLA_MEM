@@ -1,0 +1,34 @@
+set trmin 1
+set trmax 1
+
+set repmin 1
+set repmax 13
+
+set strmin 73177
+set strmax 73178
+
+
+set tr 1
+set rep 1
+mol new /SCHOOL/DO_REST_PCPG1/mem_pep.psf waitfor all
+for {set rep ${repmin}} {$rep < ${repmax}} {incr rep 1} {
+for {set str ${strmin}} {$str < ${strmax}} {incr str 1} {
+    set istr $str
+    if {$str < 10} {
+      set istr "0000${str}"
+    } elseif {$str < 100} {
+      set istr "000${str}"
+    } elseif {$str < 1000} {
+      set istr "00${str}"
+    } elseif {$str < 10000} {
+      set istr "0${str}"
+    }
+
+    mol addfile /SCHOOL/DO_REST_PCPG1/output/pgl_mem${tr}_${istr}_${rep}.dcd waitfor 1
+    set s1 [atomselect top  all]
+    $s1 writepdb /SCHOOL/DO_REST_PCPG1/pdbfiles/pgl_mem${tr}_${str}_${rep}.pdb
+}
+}
+
+exit
+

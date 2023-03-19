@@ -1,0 +1,20 @@
+How to run multiple histogram.
+
+1. First run the code to generate the input files. Code is not here in this direcory.
+2. Get the energy (run get_energy.sh). This step takes a long time.
+3. Run do_hist.sh. This calls 1 to 4 files based on the input parameters. All 4 files must be
+run at some point, but if a later step fails, you should change the do_hist.sh to not run the 
+earlier files. Some (especially step 2 take a long time).
+
+Depending on the data you are trying to generate. This may be enough.
+
+
+
+
+4. call makef.sh (compiles hist_scale_1.f90).
+5. call ./hist_scale_1.exe
+6. do_hist_lip_coord_group.sh - gets lipid coordination by lipid group.
+7. do_hist_num_trans.sh - gets probability of transmembrane peptides.
+8. do_hist_charge.sh - gets charge distribution within of system by region.
+
+The code has be written and modified my different people over the years.

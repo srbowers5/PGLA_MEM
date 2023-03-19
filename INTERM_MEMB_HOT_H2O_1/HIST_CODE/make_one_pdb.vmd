@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+OUTFILE
+set inFile tmp.dcd
+
+# load file
+mol delete all
+mol new mem22_pep.psf waitfor all
+mol addfile ${inFile} waitfor 1
+# extract peptides
+set s1 [atomselect top  "protein"]
+$s1 writepdb ${outFile}
+
+exit
+

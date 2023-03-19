@@ -1,0 +1,22 @@
+set trmin 2
+set trmax 2
+
+set repmin 1
+set repmax 1
+
+set strmin 1
+set strmax 10000
+
+
+mol new /SCHOOL/DO_CMD_MEM/mem_pep.psf waitfor all
+for {set run 22} {$run < 31} {incr run 1} {
+    mol addfile /SCHOOL/DO_CMD_MEM/output/pgl_mem1_${run}.dcd waitfor 4999
+    set nf [molinfo top get numframes]
+    for {set str 1} {$str < 4999} {incr str 1} {
+        set s1 [atomselect top  all frame $str]
+        $s1 writepdb /SCHOOL/DO_CMD_MEM/pdbfiles/mem1equil1_${run}_${str}.pdb
+    }
+}
+
+exit
+

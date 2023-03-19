@@ -1,0 +1,11 @@
+
+# load file
+mol delete all
+mol new mem22_pep.psf waitfor all
+mol addfile tmp.dcd waitfor 1
+# extract peptides
+set s1 [atomselect top "segname PGL1 PGL2"]
+$s1 writepdb tmp.pdb
+
+exit
+

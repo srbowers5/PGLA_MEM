@@ -1,0 +1,35 @@
+set trmin 3
+set trmax 3
+
+set repmin 1
+set repmax 1
+
+set strmin 99000
+set strmax 100000
+
+for {set tr $trmin} {$tr <= $trmax} {incr tr 1} {
+ for {set rep $repmin} {$rep <= $repmax} {incr rep 1} {
+  for {set str $strmin} {$str <= $strmax} {incr str 1} {
+    set istr $str
+    if {$str < 10} {
+      set istr "0000${str}"
+    } elseif {$str < 100} {
+      set istr "000${str}"
+    } elseif {$str < 1000} {
+      set istr "00${str}"
+    } elseif {$str < 10000} {
+      set istr "0${str}"
+    }
+    # load file
+    mol delete all
+    mol new mem_pep.psf waitfor all
+    mol addfile output/pgl_mem${tr}_${istr}_${rep}.dcd waitfor 1
+    # extract peptides
+    set s1 [atomselect top  protein]
+    $s1 writepdb pdb_pep/pgl_mem${tr}_${istr}_${rep}_pep.pdb
+  }
+ }
+}
+
+exit
+

@@ -1,0 +1,9 @@
+
+package require cispeptide
+mol new /SCHOOL/DO_REST_PCPG_22_2_1219_2/mem22_pep.psf waitfor all
+mol addfile /SCHOOL/DO_REST_PCPG_22_2_1219_2/output/pgl22_mem1_00001_1.dcd waitfor all
+#set s1 [atomselect top  all]
+cispeptide check -mol 0
+
+exit
+

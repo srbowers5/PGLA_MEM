@@ -1,0 +1,67 @@
+
+proc start {} {
+ set rem TRAJ
+
+ set rep REP
+ set t TEMP
+ set dir DIR
+ set firstStr START
+ set lastStr  END
+
+ puts "Start  $dir"
+ loadDCD $rem $rep $dir $firstStr $lastStr
+ getEnergy $rem $rep $t $dir $firstStr $lastStr
+
+}
+
+proc loadDCD {rem rep dir firstStr lastStr} {
+ puts "loadDCD $dir"
+ mol delete all
+ mol new ${dir}/mem22_pep.psf waitfor all
+ for {set fr $firstStr} {$fr <= $lastStr} {incr fr 1} {
+  set frame $fr
+  if {$fr < 10} {
+   set frame "0000${fr}"
+  } elseif {$fr < 100} {
+   set frame "000${fr}"
+  } elseif {$fr < 1000} {
+   set frame "00${fr}"
+  } elseif {$fr < 10000} {
+   set frame "0${fr}"
+  }
+  mol addfile ${dir}/output/pgl22_mem${rem}_${frame}_${rep}.dcd waitfor all
+ }
+}
+
+
+proc getEnergy {rem rep t dir firstStr lastStr} {
+ source namdenergy.tcl
+
+ set switch 8
+ set cutoff 12
+ set diel 1
+ set ts 0
+ set timemult 1
+
+ puts "getEnergy $dir"
+ set xsc ${dir}/pgl22_mem${rep}_0.xsc
+ set par1 ${dir}/par_all22_prot_cmap.inp
+ set par2 ${dir}/par_all36_lipid.prm
+
+
+ #peptide energies
+#  Etotrest2namd - is not used, but we read it so create it.
+  set sel1 [atomselect top "all"]
+  set outputfile1 "Etotrest2namd${rem}_${rep}_${firstStr}-${lastStr}.dat"
+
+   namdenergy -all -sel $sel1 -switch $switch -cutoff $cutoff -diel $diel -ts $ts -timemult $timemult -par $par1 -par $par2 -extsys $xsc -pme -T $t -exe ../NAMD_NO_CUDA/namd2_no_cuda -ofile $outputfile1
+
+  $sel1 delete
+}
+
+start
+
+puts "Done."
+
+exit
+

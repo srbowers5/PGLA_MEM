@@ -1,0 +1,17 @@
+
+# load file
+mol delete all
+mol new mem22_pep.psf waitfor all
+mol addfile output/mem_equila1_11.dcd waitfor all
+# extract peptides
+ set nf [molinfo top get numframes]
+puts "FRAMES "
+puts $nf
+for {set str 0} {$str < $nf} {incr str 1} {
+   puts $str
+   set s1 [atomselect top  all frame $str]
+   $s1 writepdb pdbfiles/mem_equila1_11_$str.pdb
+}
+puts "DONE"
+exit
+
