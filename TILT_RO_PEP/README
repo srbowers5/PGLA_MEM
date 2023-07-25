@@ -1,0 +1,5 @@
+The files in this directory are used to determine the tilt of the peptide as well as the rotation angle of the
+residues in the helix.
+
+Some of the files are in the CPP_FILES directory since they are used by other programs.
+

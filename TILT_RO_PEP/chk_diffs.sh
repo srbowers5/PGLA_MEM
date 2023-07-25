@@ -1,0 +1,15 @@
+diff ~/CPP_FILES/dcdStruct.h .
+diff ~/CPP_FILES/get_hel_ulr.cpp .
+diff ~/CPP_FILES/get_hel_ulr.h .
+diff ~/CPP_FILES/get_scd.cpp .
+diff ~/CPP_FILES/get_tilt.h .
+diff ~/CPP_FILES/get_tilt_ulr.cpp .
+diff ~/CPP_FILES/ParseLine.h .
+diff ~/CPP_FILES/ReadCM.cpp .
+diff ~/CPP_FILES/ReadCM.h .
+diff ~/CPP_FILES/ReadDcd.cpp .
+diff ~/CPP_FILES/ReadDcd.h .
+diff ~/CPP_FILES/ReadPdb.cpp .
+diff ~/CPP_FILES/ReadPdb.h .
+diff ~/CPP_FILES/get_com_xsc.cpp .
+diff ~/CPP_FILES/get_com_xsc.h .
