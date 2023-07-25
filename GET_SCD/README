@@ -1,0 +1,7 @@
+This gets the SCD for the membrane lipids.
+get_scd_memb.sh - gets the SCD for the membrane only system where DCD files have multiple frames
+get_scd.sh - get the SCD from the REST or REHT DCD files where there is only 1 from per DCD file.
+
+Some files from CPP_FILES are used.
+
+
